@@ -399,9 +399,11 @@ class Call(PyTgCalls):
                 auto_on = await is_autoplay_group(chat_id)
                 if auto_on and popped:
                     success = False
-                    raw_title = popped.get("title", "")
+                    
+                    # 🚀 Fix: Safely fetching variables and converting to string
+                    raw_title = popped.get("title") or "Unknown Title"
                     title_lower = str(raw_title).lower()
-                    last_vidid = str(popped.get("vidid", ""))
+                    last_vidid = str(popped.get("vidid") or "")
 
                     # ==========================================
                     # Phase 1: Smart Language Autoplay
@@ -497,24 +499,24 @@ class Call(PyTgCalls):
                     # ==========================================
                     if not success:
                         try:
-                            # Hum 15 minutes (900 seconds) ki limit pass kar rahe hain
+                            # 🚀 Fix: Safely passing variables without None risks
                             recommendation = await YouTube.autoplay(
                                 last_vidid=last_vidid,
-                                title=raw_title,
+                                title=str(raw_title),
                                 max_duration=900,
                             )
                             if recommendation:
                                 db[chat_id].append({
-                                    "title": recommendation["title"],
-                                    "dur": recommendation["duration_min"],
+                                    "title": str(recommendation.get("title", "Unknown Title")),
+                                    "dur": recommendation.get("duration_min", "0:00"),
                                     "streamtype": popped.get("streamtype", "audio"),
                                     "by": "Autoplay",
                                     "user_id": 0,
                                     "chat_id": chat_id,
-                                    "file": f"vid_{recommendation['vidid']}",
-                                    "vidid": recommendation["vidid"],
-                                    "seconds": recommendation["duration_sec"],
-                                    "old_dur": recommendation["duration_min"],
+                                    "file": f"vid_{recommendation.get('vidid', '')}",
+                                    "vidid": str(recommendation.get("vidid", "")),
+                                    "seconds": recommendation.get("duration_sec", 0),
+                                    "old_dur": recommendation.get("duration_min", "0:00"),
                                     "old_second": 0,
                                     "played": 0,
                                     "client": popped.get("client")
