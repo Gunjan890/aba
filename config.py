@@ -11,9 +11,6 @@ API_HASH = getenv("API_HASH")
 BOT_TOKEN = getenv("BOT_TOKEN")
 BOT_ID = getenv("BOT_ID")
 
-SHRUTI_API_URL = "https://api.shrutibots.site"
-SHRUTI_API_KEY = "ShrutiBotsC0WH1GowF2HkGoKv4F3y"
-
 OWNER_USERNAME = getenv("OWNER_USERNAME", "")
 BOT_USERNAME = getenv("BOT_USERNAME", "")
 BOT_NAME = getenv("BOT_NAME", "")
@@ -23,7 +20,14 @@ BOT_LINK = getenv("BOT_LINK", "https://t.me/clone_MUSICrobot")
 MONGO_DB_URI = getenv("MONGO_DB_URI")
 
 YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com')
-YT_API_KEY = getenv("YT_API_KEY" , 'xbit_B4TNnBAoe6uoSM7NLFz-dk6X7GibJ6Bh')
+YT_API_KEY = getenv("YT_API_KEY" , 'xbit_kp3GFnAvdnFVDV3L6xACy-jbVBE5q5Cd')
+
+WORKER_FALLBACK_API_URL = getenv(
+    "WORKER_FALLBACK_API_URL",
+    "https://youtubenewapi.skybotsdeveloper.workers.dev",
+)
+WORKER_FALLBACK_API_KEY = getenv("WORKER_FALLBACK_API_KEY", None)
+
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 
