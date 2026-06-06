@@ -6,7 +6,9 @@ import config
 from PritiMusic import YouTube, app
 from PritiMusic.core.call import Lucky
 from PritiMusic.misc import db
-from PritiMusic.utils.database import get_loop
+
+# ✅ FIX 1: get_assistant ko import kiya taaki sahi client fetch ho sake
+from PritiMusic.utils.database import get_loop, get_assistant 
 from PritiMusic.utils.database.autoplay import is_autoplay_group # 🟢 FIX: Imported Autoplay Check
 from PritiMusic.utils.decorators import AdminRightsCheck
 from PritiMusic.utils.inline import close_markup, stream_markup, stream_markup2
@@ -55,7 +57,9 @@ async def skip(cli, message: Message, _, chat_id):
                                 if not hasattr(Lucky, "last_played_song"):
                                     Lucky.last_played_song = {}
                                 Lucky.last_played_song[chat_id] = popped
-                                return await Lucky.change_stream(cli, chat_id)
+                                # ✅ FIX 2: Sahi assistant client pass kiya
+                                assistant = await get_assistant(chat_id)
+                                return await Lucky.change_stream(assistant, chat_id)
                             else:
                                 try:
                                     await message.reply_text(
@@ -91,7 +95,9 @@ async def skip(cli, message: Message, _, chat_id):
                     if not hasattr(Lucky, "last_played_song"):
                         Lucky.last_played_song = {}
                     Lucky.last_played_song[chat_id] = popped
-                    return await Lucky.change_stream(cli, chat_id)
+                    # ✅ FIX 3: Sahi assistant client pass kiya
+                    assistant = await get_assistant(chat_id)
+                    return await Lucky.change_stream(assistant, chat_id)
                 else:
                     await message.reply_text(
                         text=_["admin_6"].format(
