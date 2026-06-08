@@ -11,7 +11,7 @@ from button import styled_button, ButtonStyle
 
 # Main Bot Link (Where users can create a clone)
 # Ideally, this should be in config, but hardcoding here works too.
-BOT_LINK = "https://t.me/clone_MUSICrobot"
+BOT_LINK = "https://t.me/SizzuMusicBot"
 
 # ✅ Helper to safely get Random Start Image
 def get_random_start_img():
@@ -19,7 +19,7 @@ def get_random_start_img():
         if isinstance(config.START_IMG_URL, list):
             return random.choice(config.START_IMG_URL)
         return config.START_IMG_URL
-    return "https://files.catbox.moe/10zwqs.jpg" # Fallback Image
+    return "https://litter.catbox.moe/zn81yi.jpg" # Fallback Image
 
 
 @Client.on_message(filters.command("clone"))
