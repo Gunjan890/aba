@@ -104,6 +104,9 @@ def stream_markup(_, chat_id):
             styled_button(text="II", callback_data=f"ADMIN Pause|{chat_id}", style=ButtonStyle.DANGER),
             styled_button(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}", style=ButtonStyle.PRIMARY),
         ],
+        [
+            styled_button(text="❖ 𝐀ᴜᴛᴏ𝐏ʟᴀʏ ❖", callback_data=f"ADMIN Autoplay|{chat_id}", style=ButtonStyle.PRIMARY)
+        ],
         [clone_button()],
         [
             add_me_button(),
@@ -148,6 +151,9 @@ def livestream_markup(_, videoid, user_id, mode, channel, fplay):
                 callback_data=f"LiveStream {videoid}|{user_id}|{mode}|{channel}|{fplay}",
                 style=ButtonStyle.SUCCESS
             ),
+        ],
+        [
+            styled_button(text="❖ 𝐀ᴜᴛᴏ𝐏ʟᴀʏ ❖", callback_data=f"ADMIN Autoplay|{chat_id}", style=ButtonStyle.PRIMARY)
         ],
         [clone_button()],
         [
