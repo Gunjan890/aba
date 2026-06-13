@@ -6,27 +6,18 @@ import config
 
 from ..logging import LOGGER
 
-TEMP_MONGODB = ""
-
-
-if config.MONGO_DB_URI is None:
-    LOGGER(__name__).warning("No MONGO DB URL found. LOL")
-    temp_client = Client(
-        "Anon",
-        bot_token=config.BOT_TOKEN,
-        api_id=config.API_ID,
-        api_hash=config.API_HASH,
-    )
-    temp_client.start()
-    info = temp_client.get_me()
-    username = info.username
-    temp_client.stop()
-    _mongo_async_ = _mongo_client_(TEMP_MONGODB)
-    _mongo_sync_ = MongoClient(TEMP_MONGODB)
-    mongodb = _mongo_async_[username]
-    pymongodb = _mongo_sync_[username]
+# Agar URI nahi hai, toh code ko fail hone se bachayein
+if not config.MONGO_DB_URI:
+    LOGGER(__name__).warning("No MONGO DB URL found. Bot start nahi ho sakta!")
+    # Yahan se bot ko exit kar dena chahiye kyunki bina DB ke ye nahi chalega
+    exit() 
 else:
-    _mongo_async_ = _mongo_client_(config.MONGO_DB_URI)
-    _mongo_sync_ = MongoClient(config.MONGO_DB_URI)
-    mongodb = _mongo_async_.Anon
-    pymongodb = _mongo_sync_.Anon
+    try:
+        _mongo_async_ = _mongo_client_(config.MONGO_DB_URI)
+        _mongo_sync_ = MongoClient(config.MONGO_DB_URI)
+        mongodb = _mongo_async_.Anon
+        pymongodb = _mongo_sync_.Anon
+        LOGGER(__name__).info("MongoDB Successfully Connected.")
+    except Exception as e:
+        LOGGER(__name__).error(f"MongoDB Connection Error: {e}")
+        exit()
