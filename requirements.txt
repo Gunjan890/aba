@@ -1,9 +1,5 @@
-asyncio
-pyrofork
-gTTS
 aiofiles
 aiohttp
-ffmpeg
 beautifulsoup4
 dnspython
 ffmpeg-python
@@ -17,7 +13,7 @@ opencv-python-headless
 pytz
 pillow==9.5.0
 psutil
-py-tgcalls==0.9.7
+py-tgcalls>=2.3.0
 pykeyboard
 python-dotenv
 pyyaml
@@ -26,10 +22,9 @@ SafoneAPI
 speedtest-cli
 spotipy
 tgcrypto>=1.2.5
-pyrogram>=2.0.106
+kurigram
 telegraph
 unidecode
 youtube-search
 youtube-search-python
-yt-dlp>=2024.0.0
-PyGithub==2.3.0
+yt-dlp>=2024.03.10  # 🟢 MUST be updated to fix the 503 YouTube error
