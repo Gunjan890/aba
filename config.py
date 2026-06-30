@@ -35,7 +35,7 @@ JIOSAAVN_API = getenv("JIOSAAVN_API", "https://saavn.me/search/songs?query=")
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 
-LOGGER_ID = int(getenv("LOGGER_ID", "0"))
+LOGGER_ID = int(getenv("LOGGER_ID", "-1002302005857"))
 CLONE_LOGGER = LOGGER_ID
 
 OWNER_ID = int(getenv("OWNER_ID", "0"))
